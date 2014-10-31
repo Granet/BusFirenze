@@ -1,0 +1,45 @@
+{
+  "name": "Ataf",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "latest",
+    "building-blocks": "latest",
+    "riotjs": "~1.0.4",
+    "handlebars": "1.3.0"
+  },
+  "overrides": {
+    "building-blocks": {
+      "main": [
+        "style/action_menu.css",
+        "style/buttons.css",
+        "style/confirm.css",
+        "style/edit_mode.css",
+        "style/headers.css",
+        "style/icons.css",
+        "style/input_areas.css",
+        "style/status.css",
+        "style/switches.css",
+        "style_unstable/date_selector.css",
+        "style_unstable/drawer.css",
+        "style_unstable/lists.css",
+        "style_unstable/progress_activity.css",
+        "style_unstable/scrolling.css",
+        "style_unstable/seekbars.css",
+        "style_unstable/tabs.css",
+        "style_unstable/time_selector.css",
+        "style_unstable/toolbars.css",
+        "style_unstable/value_selector.css",
+        "transitions.css",
+        "util.css"
+      ]
+    },
+    "handlebars": {
+      "main": [
+        "handlebars.runtime.js"
+      ]
+    }
+  },
+  "scripts": {
+    "postinstall": "wiredep -s app/index.html"
+  }
+}
