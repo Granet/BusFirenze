@@ -5,10 +5,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-wiredep');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
+    grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-bower');
+    grunt.loadNpmTasks('grunt-image-resize');
     grunt.initConfig({
         wiredep: {
             task: {
@@ -21,8 +25,38 @@ module.exports = function (grunt) {
                 manifest: ' app/manifest.webapp'
             }
         },
+        bower: {
+            dev: {
+                dest: 'build/app/bower_components',
+                options: {
+                    ignorePackages: ['building-blocks'],
+                    packageSpecific: {
+                        'handlebars': {
+                            files: [
+                                "handlebars.runtime.js"
+                            ]
+                        }
+                    },
+                    expand: true
+                }
+            }
+        },
         clean: {
             build: 'build'
+        },
+        compress: {
+            main: {
+                options: {
+                    archive: 'build/application.zip'
+                },
+                files: [
+                    {
+                        src: './**',
+                        cwd: 'build/app',
+                        expand: true
+                    }
+                ]
+            }
         },
         concat: {
             css: {
@@ -33,15 +67,33 @@ module.exports = function (grunt) {
                     '!app/bower_components/building-blocks/style/cross_browser.css'
                     ],
                   dest: 'build/app/css/style.css'
-            },
-            js: {
-                options: {
-                    separator: ';'
-                },
+            }
+        },
+        copy: {
+            app: {
                 src: [
-                    'app/js/**/*.js'
+                    'app/*',
+                    'app/js/**/*.js',
+                    '!bower_components'
                 ],
-                dest: 'build/app/js/app.js'
+                dest: 'build/'
+            },
+            bower: {
+                src: [
+                    'bower.json'
+                ],
+                dest: 'build/app/'
+            },
+            gaia: {
+                src: [
+                    'app/bower_components/building-blocks/style/**/*',
+                    '!app/bower_components/building-blocks/style/**/*.css',
+                    '!app/bower_components/building-blocks/style/**/*.html',
+                    'app/bower_components/building-blocks/style_unstable/**/*',
+                    '!app/bower_components/building-blocks/style_unstable/**/*.css',
+                    '!app/bower_components/building-blocks/style_unstable/**/*.html'
+                ],
+                dest: 'build/'
             }
         },
         cssmin: {
@@ -63,6 +115,40 @@ module.exports = function (grunt) {
             ],
             options: {
                 reporter: require('jshint-stylish')
+            }
+        },
+        image_resize: {
+            '16': {
+                options: {
+                    width: 16
+                },
+                files: {
+                    'build/app/img/icons/icon16x16.png': 'app/img/icons/icon200x200.png'
+                }
+            },
+            '48': {
+                options: {
+                    width: 48
+                },
+                files: {
+                    'build/app/img/icons/icon48x48.png': 'app/img/icons/icon200x200.png'
+                }
+            },
+            '60': {
+                options: {
+                    width: 60
+                },
+                files: {
+                    'build/app/img/icons/icon60x60.png': 'app/img/icons/icon200x200.png'
+                }
+            },
+            '128':{
+                options: {
+                    width: 128
+                },
+                files: {
+                    'build/app/img/icons/icon128x128.png': 'app/img/icons/icon200x200.png'
+                }
             }
         },
         watch: {
@@ -113,7 +199,15 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('css', [
         'clean',
-        'mkdir',
         'concat:css'
+    ]);
+    grunt.registerTask('build', [
+        'css',
+        'copy',
+        'bower',
+        'image_resize'
+    ]);
+    grunt.registerTask('dist', [
+        'compress'
     ]);
 };
