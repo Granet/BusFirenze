@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Ataf</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/building-blocks/style/action_menu.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/buttons.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/confirm.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/edit_mode.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/headers.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/icons.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/input_areas.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/status.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style/switches.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/date_selector.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/drawer.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/lists.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/progress_activity.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/scrolling.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/seekbars.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/tabs.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/time_selector.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/toolbars.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/value_selector.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/transitions.css" />
+    <link rel="stylesheet" href="bower_components/building-blocks/util.css" />
+    <!-- endbower -->
+  </head>
+  <body role="application">
+    <section id="details" class="skin-dark scroll" role="region">
+      <header id="detailsHeader">
+        <a class="back" href="search.html">
+          <span class="icon icon-back">back</span>
+        </a>
+      </header>
+      <header>
+        <h2 id="warn" hidden>Non ci sono arrivi per la prossima mezz'ora</h2>
+      </header>
+      <section id="detailsInfo" data-type="list">
+        <ul id="resultInfo" data-type="list">
+        </ul>
+      </section>
+    </section>
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/riotjs/riot.js"></script>
+  <script src="bower_components/handlebars/handlebars.runtime.js"></script>
+  <!-- endbower -->
+  <script src="js/Model/Bus.js" defer></script>
+  <script src="js/Presenter/detailsPresenter.js" defer></script>
+  <script src="js/templates/templates.js"></script>
+  <script src="js/service.js" defer></script>
+  <script src="js/transit.js" defer></script>
+  </body>
+</html>
