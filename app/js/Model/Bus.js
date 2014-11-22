@@ -59,7 +59,7 @@ function BusModel() {
       }
   };*/
 
-  this.stopInfo = function (key) {
+  this.info = function (key) {
     console.log('searching ' + key);
     $.getJSON(
       Parameters.base + Parameters.rest + Parameters.search,
@@ -77,7 +77,7 @@ function BusModel() {
     );
   };
 
-  this.stopTransit = function (obj) {
+  this.schedule = function (obj) {
     $.getJSON(
         Parameters.base + Parameters.rest + Parameters.schedule,
       {
@@ -88,7 +88,7 @@ function BusModel() {
         s: getDynamicPassword(Parameters.ClientTicket)
       },
       function (response){
-        self.trigger('transit', response);
+        self.trigger('schedule', response);
       }
     );
   };
