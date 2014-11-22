@@ -11,7 +11,7 @@ function detailsPresenter(options) {
       var frag = document.createDocumentFragment();
       data.forEach(function (transitData) {
         var today = new Date();
-        var fix = 2 * 60 * 60 * 1000;
+        var fix = today.dst() ? 2 * 60 * 60 *1000 : 60 * 60 * 1000;
         //se the clock to 00:00:00.0 and add the number of millisecond returned
         today.setHours(0, 0, 0, +transitData.d + fix);
 
@@ -25,10 +25,10 @@ function detailsPresenter(options) {
       
       a.appendChild(frag);
     } else {
-      //
+      console.log("Nothing scheduled, got good shoes perhaps?");
     }
   }
 
 
-  model.on('transit', listTransit);
+  model.on('schedule', listTransit);
 }
