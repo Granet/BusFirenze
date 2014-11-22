@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "name": "BusFirenze",
   "description": "Load the bus transit in Firenze",
   "launch_path": "/index.html",
@@ -15,9 +15,12 @@
   },
   "type": "privileged",
   "permissions": {
-    "systemXHR": {},
-    "storage": {},
-    "geolocation": {}
+    "systemXHR": {
+      "description": "Needed to access public transportation information"
+    },
+    "storage": {
+      "description": "Needed to store public transportation information"
+    }
   },
   "installs_allowed_from": [
     "*"
