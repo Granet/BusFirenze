@@ -96,12 +96,21 @@ function SHA1(a) {
 }
 
 function calculateNormalizedTimeFromBegin() {
-  var a = new Date,
-  a = (Date.UTC(a.getUTCFullYear(), a.getUTCMonth(), a.getUTCDate(), a.getUTCHours(), a.getUTCMinutes(), a.getUTCSeconds(), a.getUTCMilliseconds()) - 0) / 1000 / 900;
+  var a = Date.now() / 1000 / 900;
   return Math.round(a) * 900;
 }
 
 function getDynamicPassword(a) {
   a = calculateNormalizedTimeFromBegin() + a;
   return SHA1(a);
+}
+
+Date.prototype.stdTimezoneOffset = function() {
+    var jan = new Date(this.getFullYear(), 0, 1);
+    var jul = new Date(this.getFullYear(), 6, 1);
+    return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+}
+
+Date.prototype.dst = function() {
+    return this.getTimezoneOffset() < this.stdTimezoneOffset();
 }
