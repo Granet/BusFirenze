@@ -35,8 +35,8 @@
       <header id="homeHeader">
         <h1>Ataf</h1>
       </header>
-     <section>
-       <form role="search" id="seachForm">
+      <section>
+         <form role="search" id="seachForm" action="search.html">
           <p>
             <input id="searchText" placeholder="Cerca..." type="text">
             <button type="reset">Clear</button>
@@ -44,55 +44,8 @@
           <p>
             <button type="submit" id="searchButton">Cerca</button>
           </p>
-          
         </form>
       </section>
-      <section>
-      </section>
-    </section>
-    <!-- list view -->
-    <section id="list" class="skin-dark scroll" role="region">
-      <header id="listHeader">
-        <a class="back" href="#home">
-          <span class="icon icon-back">back</span>
-        </a>
-        <h1>Seleziona la fermata</h1>
-      </header>
-      <section id="listInfo" data-type="list">
-        <ul id="resultList">
-        </ul>
-      </section>
-    </section>
-    <!-- details view -->
-    <section id="details" class="skin-dark scroll" role="region">
-      <header id="detailsHeader">
-        <a class="back" href="#list">
-          <span class="icon icon-back">back</span>
-        </a>
-      </header>
-      <header>
-        <h2 id="warn" hidden>Non ci sono arrivi per la prossima mezz'ora</h2>
-      </header>
-      <section id="detailsInfo" data-type="list">
-        <ul id="resultInfo" data-type="list">
-        </ul>
-      </section>
-    </section>
-    <!-- transit view -->
-    <section id="transit" class="skin-dark" role="region">
-      <header id="transitHeader">
-        <a class="back" href="#details">
-          <span class="icon icon-back">back</span>
-        </a>
-      </header>
-      <ul id="transitList" data-type="list"></ul>
-    </section>
-    <!-- offline view -->
-    <section id="offline" class="skin-dark" role="region">
-      <header id="offlineHeader">
-        Offline
-      </header>
-      <p>Al momento sei offline, per favore attiva la connessione dati o il wifi per controllare gli orari degli autobus</p>
     </section>
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -100,11 +53,11 @@
   <script src="bower_components/handlebars/handlebars.runtime.js"></script>
   <!-- endbower -->
   <script src="js/Model/Bus.js" defer></script>
-  <script src="js/Presenter/searchPresenter.js" defer></script>
-  <script src="js/Presenter/listPresenter.js" defer></script>
-  <script src="js/Presenter/detailsPresenter.js" defer></script>
+  <script src="js/Presenter/app.js" defer></script>
+  <script src="js/Presenter/search.js" defer></script>
+  <script src="js/Presenter/transit.js" defer></script>
+  <script src="js/Presenter/service.js" defer></script>
   <script src="js/templates/templates.js"></script>
-  <script src="js/service.js" defer></script>
   <script src="js/app.js" defer></script>
   </body>
 </html>
