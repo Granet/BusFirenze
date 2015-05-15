@@ -73,6 +73,7 @@ module.exports = function (grunt) {
             app: {
                 src: [
                     'app/*',
+                    'app/img/**/*',
                     'app/js/**/*.js',
                     '!bower_components'
                 ],
@@ -84,16 +85,12 @@ module.exports = function (grunt) {
                 ],
                 dest: 'build/app/'
             },
-            gaia: {
+            icons: {
                 src: [
-                    'app/bower_components/building-blocks/style/**/*',
-                    '!app/bower_components/building-blocks/style/**/*.css',
-                    '!app/bower_components/building-blocks/style/**/*.html',
-                    'app/bower_components/building-blocks/style_unstable/**/*',
-                    '!app/bower_components/building-blocks/style_unstable/**/*.css',
-                    '!app/bower_components/building-blocks/style_unstable/**/*.html'
+                    'app/bower_components/building-blocks/style/**/*.png',
+                    'app/bower_components/building-blocks/style_unstable/**/*.png'
                 ],
-                dest: 'build/'
+                dest: 'build/app/css/'
             }
         },
         cssmin: {
@@ -118,15 +115,7 @@ module.exports = function (grunt) {
             }
         },
         image_resize: {
-            '16': {
-                options: {
-                    width: 16
-                },
-                files: {
-                    'build/app/img/icons/icon16x16.png': 'app/img/icons/icon200x200.png'
-                }
-            },
-            '48': {
+            'small': {
                 options: {
                     width: 48
                 },
@@ -134,7 +123,7 @@ module.exports = function (grunt) {
                     'build/app/img/icons/icon48x48.png': 'app/img/icons/icon200x200.png'
                 }
             },
-            '60': {
+            'medium': {
                 options: {
                     width: 60
                 },
@@ -142,7 +131,7 @@ module.exports = function (grunt) {
                     'build/app/img/icons/icon60x60.png': 'app/img/icons/icon200x200.png'
                 }
             },
-            '128':{
+            'large' : {
                 options: {
                     width: 128
                 },
@@ -197,15 +186,12 @@ module.exports = function (grunt) {
         'connect',
         'watch'
     ]);
-    grunt.registerTask('css', [
-        'clean',
-        'concat:css'
-    ]);
     grunt.registerTask('build', [
-        'css',
+        'clean',
+        'concat:css',
         'copy',
-        'bower',
-        'image_resize'
+        'bower'
+        //'image_resize'
     ]);
     grunt.registerTask('dist', [
         'compress'
