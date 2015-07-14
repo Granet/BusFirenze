@@ -8,12 +8,16 @@ function listPresenter(options) {
     $('#listInfo').empty();
     if (data) {
       var frag = document.createDocumentFragment();
-
+      var i = 0;
       data.forEach(function (stopData) {
         var li = document.createElement('li');
         li.innerHTML = App.templates.fermata(stopData);
         li.addEventListener('click', function (e) {
           window.localStorage.setItem('fermata', JSON.stringify(stopData));
+        });
+        $('#preferito').click(function(){
+          window.localStorage.setItem(JSON.stringify(i), JSON.stringify(stopData));
+          i++;
         });
         frag.appendChild(li);
       });
